@@ -1,40 +1,41 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package teste;
+package Trab_POO;
+import java.util.*;
 
-/**
- *
- * @author danielpozzan
- */
 public class Editor {
-    private Stack text;
-    private Stack buff;
+    private LinkedList<String> text;
+    private Stack<String> buff;
     
-    public Editor()
-    {
-        text = new Stack();
-        buff = new Stack();
+    public Editor(){
+        text = new LinkedList<>();
+        buff = new Stack<>();
     }
     
-    public void insereTexto(String s)
-    {
-        text.push(s);
+    public void insereTexto(String s){
+        text.add(s);
     }
     
-    public void desfazer()
-    {
+    public void desfazer(){
         String s;
-        s = text.pop();
+        s = text.removeLast();
         buff.push(s);
     }
     
-    public void refazer()
-    {
+    public void refazer(){
         String s;
-        s = buff.pop();
-        insereTexto(s);
+        if(!buff.isEmpty()){
+                 s = buff.pop();
+                 insereTexto(s);   
+        }else{
+            System.out.println("nao eh possivel refazer!");
+        }
+    }
+    
+    public void exibir(){
+        for(int i = 0; i<text.size();i++)
+            System.out.print(text.get(i));
+    }
+    
+    public void clear_list(){
+        buff.clear();
     }
 }
