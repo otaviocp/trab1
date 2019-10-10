@@ -1,14 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package trabpoo;
+package trab_poo;
+
 import java.io.IOException;
 import static java.lang.System.*;
 import java.util.Scanner;
 
-public class Trab_POO {
+public class Trab_POO{
     public static void main(String[] args) throws IOException {
         int opt;
         String s;
@@ -21,15 +17,17 @@ public class Trab_POO {
             out.println("3 - Refazer");
             out.println("4 - Inserir caractere");
             out.println("5 - Remove caractere");
-            out.println("6 - Remove palavra");
-            out.println("7 -  Exibir texto");
-            out.println(">>");
+            out.println("6 - Inserir quebra de linha");
+            out.println("7 - Remove palavra");
+            out.println("8 -  Exibir texto");
+            out.print(">>");
             opt = l.nextInt();
             
             switch(opt)
             {
                 case 1:
-                    ed.clear_list();
+                    ed.clearStack();
+                    ed.exibir();
                     l.nextLine();
                     s = l.nextLine();
                     ed.insereTexto(s);
@@ -52,13 +50,17 @@ public class Trab_POO {
                 case 5:
                     ed.removeC();
                     break;
-                    
+                
                 case 6:
+                    ed.insereEnter();
+                    break;
+                case 7:
                     ed.removeTexto();
                     break;
                     
-                case 7:
+                case 8:
                     ed.exibir();
+                    System.out.print("\n");
                     break;   
             }
         }while(opt != 0);
