@@ -4,6 +4,13 @@ import java.io.IOException;
 import static java.lang.System.*;
 import java.util.Scanner;
 
+/**Classe principal.
+* @author Daniel Pozzan - 10716608
+* @author Otávio Pontes - 10716525
+* @since 10/10/2019
+* @version 1.0
+*/
+
 public class Trab_POO{
     public static void main(String[] args) throws IOException {
         int opt;
@@ -20,6 +27,7 @@ public class Trab_POO{
             out.println("6 - Inserir quebra de linha");
             out.println("7 - Remove palavra");
             out.println("8 -  Exibir texto");
+            out.println("0 - Sair");
             out.print(">>");
             opt = l.nextInt();
             
@@ -55,7 +63,7 @@ public class Trab_POO{
                     ed.insereEnter();
                     break;
                 case 7:
-                    ed.removeTexto();
+                    ed.removePalavra();
                     break;
                     
                 case 8:

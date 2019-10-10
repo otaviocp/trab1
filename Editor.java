@@ -26,9 +26,13 @@ public class Editor{
         text.add(s);
     }
     
-    /**Método para remover texto da lista encadeada*/
-    public void removeTexto(){
-        text.removeLast();
+    /**Método para remover uma palavra da lista encadeada*/
+    public void removePalavra(){
+        String aux = text.removeLast();
+        
+        aux = aux.substring(0, aux.lastIndexOf(" ")) + "";
+        
+        insereTexto(aux);
     }
     
     /**Método para desfazer a última ação efetuada pelo usuário, inserindo a string na pilha.*/
@@ -89,6 +93,7 @@ public class Editor{
         
         String res = sb.toString();
         
-        insereTexto(res);
+        if(!res.isEmpty())
+            insereTexto(res);
     }
 }
