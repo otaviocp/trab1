@@ -1,6 +1,8 @@
-package trabpoo;
+package trab_poo;
+
 import java.io.IOException;
-import java.util.*;
+import java.util.LinkedList;
+import java.util.Stack;
 
 public class Editor{
     private LinkedList<String> text;
@@ -38,10 +40,9 @@ public class Editor{
     }
     
     public void exibir(){
-        for(int i = 0; i<text.size();i++)
+        for(int i = 0; i < text.size(); i++)
             System.out.print(text.get(i));
         
-        System.out.println("");
     }
     
     public void clear_list(){
@@ -50,13 +51,17 @@ public class Editor{
     
     public void insereC(String c) throws IOException{
         if(c.length()>1)
-            throw new IOException("Nao e caractere!");
+            throw new IOException("Nao eh caractere!");
         String aux = text.removeLast();
         sb = new StringBuilder(aux);
         sb.append(c);
         String res = sb.toString();
         
         insereTexto(res);
+    }
+    
+    public void insereEnter(){
+        insereTexto("\n");
     }
     
     public void removeC(){
