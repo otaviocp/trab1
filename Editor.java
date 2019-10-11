@@ -96,4 +96,22 @@ public class Editor{
         if(!res.isEmpty())
             insereTexto(res);
     }
+
+    public String retorna(int aux){
+        if(aux < text.size())
+            return text.get(aux);
+        else
+            return null;
+    }
+    
+    public LinkedList<String> getText() {
+        return text;
+    }
+
+    public void setText(LinkedList<String> text) {
+        this.text = text;
+    }
+    
+    
+    
 }
