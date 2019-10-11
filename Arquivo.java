@@ -9,6 +9,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.LinkedList;
 
+
 public class Arquivo{
     FileWriter outputStream = null;
     FileReader inputStream = null;

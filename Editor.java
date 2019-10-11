@@ -55,8 +55,10 @@ public class Editor{
     
     /**Método para exibir o texto.*/
     public void exibir(){
+        if(!text.isEmpty()){
         for(int i = 0; i < text.size(); i++)
             System.out.print(text.get(i));
+        }
         
     }
     

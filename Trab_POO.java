@@ -1,22 +1,29 @@
 package trab_poo;
 
+import java.io.File;
 import java.io.IOException;
 import static java.lang.System.*;
 import java.util.Scanner;
 
-/**Classe principal.
-* @author Daniel Pozzan - 10716608
-* @author Otávio Pontes - 10716525
-* @since 10/10/2019
-* @version 1.0
-*/
-
-public class Trab_POO{
+public class Trab_POO {
     public static void main(String[] args) throws IOException {
-        int opt;
+        String opt;
+        String opt1;
         String s;
         Scanner l = new Scanner(in);
         Editor ed = new Editor();
+        Arquivo arq = new Arquivo();
+        File arquivo = new File("texto.txt");
+        
+        System.out.println("Deseja carregar um arquivo?");
+        System.out.println("Sim - 1");
+        System.out.println("Nao - Outra tecla");
+        
+        opt1 = l.nextLine();
+                    
+        if(opt1.equals("1"))
+            ed.setText(arq.ler(arquivo));
+        
         do{
             out.println("<<EDITOR DE TEXTO>>");
             out.println("1 - Inserir texto");
@@ -29,48 +36,64 @@ public class Trab_POO{
             out.println("8 -  Exibir texto");
             out.println("0 - Sair");
             out.print(">>");
-            opt = l.nextInt();
+            
+            opt = l.nextLine();
             
             switch(opt)
             {
-                case 1:
+                case "1":
                     ed.clearStack();
+                    System.out.println("******************************EDITOR*****************************");
                     ed.exibir();
                     l.nextLine();
                     s = l.nextLine();
                     ed.insereTexto(s);
+                    System.out.println("*****************************************************************");
                     break;
                     
-                case 2:
+                case "2":
                     ed.desfazer();
                     break;
                     
-                case 3:
+                case "3":
                     ed.refazer();
                     break;
                     
-                case 4:
+                case "4":
                     l.nextLine();
                     s = l.nextLine();
                     ed.insereC(s);
                     break;
                     
-                case 5:
+                case "5":
                     ed.removeC();
                     break;
                 
-                case 6:
+                case "6":
                     ed.insereEnter();
                     break;
-                case 7:
+                    
+                case "7":
                     ed.removePalavra();
                     break;
                     
-                case 8:
+                case "8":
+                    System.out.println("******************************TEXTO*****************************");
                     ed.exibir();
+                    System.out.println("");
+                    System.out.println("*****************************************************************");
                     System.out.print("\n");
+                    System.out.println("Deseja salvar o texto?");
+                    System.out.println("Sim - 1");
+                    System.out.println("Nao - Outra tecla");
+                    
+                    opt1 = l.nextLine();
+                    
+                    if(opt1.equals("1"))
+                         arq.gravar(ed);
+                    
                     break;   
             }
-        }while(opt != 0);
+        }while(!opt.equals("0"));
     }
 }
