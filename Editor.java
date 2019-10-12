@@ -9,51 +9,52 @@ import java.util.Stack;
 * @author Otavio Pontes
 */
 public class Editor{
-    private LinkedList<String> text;
-    private Stack<String> buff;
+    private LinkedList<String> text;//o texto todo é guardado em uma lista encadeada
+    private Stack<String> buff;//o 'buffer' é uma pilha que guarda as strings que receberem o comando desfazer.
     private StringBuilder sb;
     
-    /** O construtor cria a lista que contém o texto inserido pelo usuário e a pilha que contém o texto que recebe a ação de desfazer por parte do usuário. */
+    /** Cria a lista que contém o texto inserido pelo usuário e a pilha que contém o texto que recebe a ação de desfazer por parte do usuário. */
     public Editor(){
         text = new LinkedList<>();
         buff = new Stack<>();
     }
     
-    /**Método para inserir texto na lista encadeada
+    /**Insere texto na lista encadeada
     * @param s String - Texto a ser inserido
     */
     public void insereTexto(String s){
         text.add(s);
     }
     
-    /**Método para remover uma palavra da lista encadeada*/
+    /**Remove uma palavra da lista encadeada
+     */
     public void removePalavra(){
-        String aux = text.removeLast();
+        String aux = text.removeLast();//remove a string da lista
         
-        aux = aux.substring(0, aux.lastIndexOf(" ")) + "";
+        aux = aux.substring(0, aux.lastIndexOf(" ")) + "";//remove a última palavra da string
         
-        insereTexto(aux);
+        insereTexto(aux);//reinsere a string na lista
     }
     
-    /**Método para desfazer a última ação efetuada pelo usuário, inserindo a string na pilha.*/
+    /**desfaz a última ação efetuada pelo usuário, inserindo a string na pilha.*/
     public void desfazer(){
         String s;
-        s = text.removeLast();
-        buff.push(s);
+        s = text.removeLast();//retira a string da lista
+        buff.push(s);//e a insere na pilha
     }
     
-    /**Método para refazer a última ação desfeita, removendo a string da pilha.*/
+    /**Refaz a última ação desfeita, removendo a string da pilha.*/
     public void refazer(){
         String s;
         if(!buff.isEmpty()){
-                 s = buff.pop();
-                 insereTexto(s);   
+                 s = buff.pop();//retira a string da pilha
+                 insereTexto(s);//e a insere na lista
         }else{
             System.out.println("Não é possível refazer!");
         }
     }
     
-    /**Método para exibir o texto.*/
+    /**Exibe o texto.*/
     public void exibir(){
         if(!text.isEmpty()){
         for(int i = 0; i < text.size(); i++)
@@ -62,43 +63,47 @@ public class Editor{
         
     }
     
-    /**Método para limpar a pilha de desfazer/refazer.*/
+    /**Limpa a pilha de desfazer/refazer.*/
     public void clearStack(){
         buff.clear();
     }
     
-    /**Método para inserir um caractere na última posição do texto.
+    /**Insere um caractere na última posição do texto.
     * @param c String - Caractere a ser inserido
-    * @throws IOException - Se a string a ser inserida for maior que só um caractere
+    * @throws IOException - Se a string a ser inserida for maior que só um caractere.
     */
     public void insereC(String c) throws IOException{
         if(c.length()>1)
-            throw new IOException("Nao eh caractere!");
-        String aux = text.removeLast();
+            throw new IOException("Nao eh caractere!");//utiliza-se string pela dificuldade de trabalhar com o tipo char
+        String aux = text.removeLast();//retira a string da pilha
         sb = new StringBuilder(aux);
-        sb.append(c);
+        sb.append(c);//utiliza-se o StringBuilder para concatenar o novo caractere
         String res = sb.toString();
         
-        insereTexto(res);
+        insereTexto(res);//e a reinsere com o novo caractere
     }
     
-    /**Método para inserir uma quebra de linha no texto.*/
+    /**Insere uma quebra de linha no texto.*/
     public void insereEnter(){
         insereTexto("\n");
     }
     
-    /**Método para remover um caractere da última posição do texto.*/
+    /**Remove um caractere da última posição do texto.*/
     public void removeC(){
-        String aux = text.removeLast();
+        String aux = text.removeLast();//remove a string da lista
         sb = new StringBuilder(aux);
-        sb.deleteCharAt(aux.length()-1);
+        sb.deleteCharAt(aux.length()-1);//utiliza-se o StringBuilder para remover o ultimo caractere
         
         String res = sb.toString();
-        
-        if(!res.isEmpty())
-            insereTexto(res);
+        if(!res.isEmpty())//se a string retornada não for vazia
+            insereTexto(res);//ela é reinserida na lista
     }
 
+    /**
+     * Retorna o texto presente no nó presente no índice "aux" da lista encadeada.
+     * @param aux int - Índice da lista.
+     * @return Texto presente no nó.
+     */
     public String retorna(int aux){
         if(aux < text.size())
             return text.get(aux);
@@ -106,10 +111,18 @@ public class Editor{
             return null;
     }
     
+    /**
+     * Retorna a lista encadeada que contém o texto do editor.
+     * @return Lista encadeada com o texto do editor.
+     */
     public LinkedList<String> getText() {
         return text;
     }
 
+    /**
+     * Coloca no editor uma lista encadeada com strings de texto.
+     * @param text LinkedList - Recebe uma lista encadeada com o texto do editor.
+     */
     public void setText(LinkedList<String> text) {
         this.text = text;
     }

@@ -9,13 +9,23 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.LinkedList;
 
-
+/**
+ * Classe que lida com a criação e leitura de arquivos.
+ * @author Otávio Pontes
+ * @since 11/10/2019
+ */
 public class Arquivo{
     FileWriter outputStream = null;
     FileReader inputStream = null;
     private static File arquivo;
     private Editor edit;
    
+    /**
+     * Realiza a escrita em arquivo do texto inserido pelo usuário.
+     * @param ed Editor - Recebe a lista com o texto inserido pelo usuário.
+     * @throws FileNotFoundException - Arquivo não encontrado.
+     * @throws IOException - Erro ao salvar.
+     */
     public void gravar(Editor ed) throws FileNotFoundException, IOException{        
         try {
             arquivo = new File ("texto.txt");
@@ -40,6 +50,13 @@ public class Arquivo{
         }
     }
     
+    /**
+     * Lê do arquivo e retorna uma lista encadeada com as strings presentes nele.
+     * @param arquivo File - Arquivo a ser lido.
+     * @return 
+     * @throws FileNotFoundException
+     * @throws IOException 
+     */
      public LinkedList ler(File arquivo) throws FileNotFoundException, IOException{
          edit = new Editor();
          try {
